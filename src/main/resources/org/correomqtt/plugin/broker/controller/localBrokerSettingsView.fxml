@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="localBrokerSettingsPane" prefWidth="600.0" styleClass="dialog" stylesheets="@../css/localBrokerSettings.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox fx:id="localBrokerSettingsVBox" styleClass="settingsHolder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <Label alignment="TOP_LEFT" styleClass="headline" text="%localBrokerSettingsHeaderLabel">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></Label>
+            <GridPane styleClass="settingsGrid" VBox.vgrow="ALWAYS">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                </columnConstraints>
+                <children>
+                    <VBox>
+                        <children>
+                            <Label styleClass="settingsLabel" text="Port" />
+                            <Label text="%localBrokerSettingsPortExplanationLabel" wrapText="true">
+                                <styleClass>
+                                    <String fx:value="secondaryText" />
+                                    <String fx:value="settingsDescription" />
+                                </styleClass>
+                            </Label>
+                        </children>
+                    </VBox>
+                    <TextField maxWidth="50.0" prefHeight="26.0" prefWidth="25.0" text="1883" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="TOP" />
+                    
+                    <VBox GridPane.rowIndex="3">
+                        <children>
+                            <Label styleClass="settingsLabel" text="%localBrokerSettingsStartLabel" />
+                            <Label text="%localBrokerSettingsStartLabelExplanation" wrapText="true">
+                                <styleClass>
+                                    <String fx:value="secondaryText" />
+                                    <String fx:value="settingsDescription" />
+                                </styleClass>
+                            </Label>
+                        </children>
+                    </VBox>
+                    <CheckBox fx:id="searchUpdatesCheckbox" layoutX="422.0" layoutY="10.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <padding>
+                            <Insets top="7.0" />
+                        </padding>
+                    </CheckBox>
+                </children>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+            <HBox alignment="CENTER_RIGHT">
+                <children>
+                    <Button fx:id="settingsSaveButton" mnemonicParsing="false" onAction="#onSaveClicked" text="Start">
+                        <HBox.margin>
+                            <Insets left="5.0" />
+                        </HBox.margin>
+                    </Button>
+                </children>
+                <VBox.margin>
+                    <Insets />
+                </VBox.margin>
+            </HBox>
+        </children>
+    </VBox>
+</AnchorPane>
