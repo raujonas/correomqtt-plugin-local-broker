@@ -29,7 +29,7 @@
                             </Label>
                         </children>
                     </VBox>
-                    <TextField maxWidth="50.0" prefHeight="26.0" prefWidth="25.0" text="1883" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="TOP" />
+                    <TextField fx:id="portTextField" maxWidth="50.0" prefHeight="26.0" prefWidth="25.0" text="1883" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="TOP" />
                     
                     <VBox GridPane.rowIndex="3">
                         <children>
@@ -42,7 +42,7 @@
                             </Label>
                         </children>
                     </VBox>
-                    <CheckBox fx:id="searchUpdatesCheckbox" layoutX="422.0" layoutY="10.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                    <CheckBox fx:id="autoStartCheckBox" layoutX="422.0" layoutY="10.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                         <padding>
                             <Insets top="7.0" />
                         </padding>
@@ -55,9 +55,26 @@
                <RowConstraints />
             </rowConstraints>
             </GridPane>
+         <VBox alignment="CENTER">
+            <children>
+               <Button fx:id="startStopButton" onAction="#onStartStopClicked" alignment="CENTER" contentDisplay="CENTER" minWidth="200.0" mnemonicParsing="false" text="Button" VBox.vgrow="ALWAYS">
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+               </Button>
+            </children>
+            <VBox.margin>
+               <Insets bottom="40.0" />
+            </VBox.margin>
+         </VBox>
             <HBox alignment="CENTER_RIGHT">
                 <children>
-                    <Button fx:id="settingsSaveButton" mnemonicParsing="false" onAction="#onSaveClicked" text="Start">
+                    <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelClicked" text="%commonCancelButton">
+                        <HBox.margin>
+                            <Insets left="5.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveClicked" text="%commonSaveButton">
                         <HBox.margin>
                             <Insets left="5.0" />
                         </HBox.margin>

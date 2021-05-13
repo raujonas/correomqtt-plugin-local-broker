@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -19,6 +21,7 @@ import org.correomqtt.gui.controller.SettingsViewController;
 import org.correomqtt.gui.model.WindowProperty;
 import org.correomqtt.gui.model.WindowType;
 import org.correomqtt.gui.utils.WindowHelper;
+import org.correomqtt.plugin.broker.broker.LocalBroker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,11 +36,17 @@ public class LocalBrokerSettingsViewController {
     private static final ResourceBundle resources = ResourceBundle.getBundle("org.correomqtt.plugin.broker.i18n", SettingsProvider.getInstance().getSettings().getCurrentLocale());
     @FXML
     private AnchorPane localBrokerSettingsPane;
-    @FXML
-    private VBox settingsVBox;
-    @FXML
-    private CheckBox searchUpdatesCheckbox;
     private SettingsDTO settings;
+    @FXML
+    private TextField portTextField;
+    @FXML
+    private CheckBox autoStartCheckBox;
+    @FXML
+    private Button startStopButton;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private Button cancelButton;
 
     static void showAsDialog() throws IOException {
         Map<Object, Object> properties = new HashMap<>();
@@ -86,25 +95,23 @@ public class LocalBrokerSettingsViewController {
     }
 
     @FXML
-    public void onCancelClicked() {
-        LOGGER.debug("Cancel in settings clicked");
-        closeDialog();
-    }
+    public void onStartStopClicked() {
+        LOGGER.debug("Start / stop broker clicked");
 
-    @FXML
-    public void onSaveClicked() {
-        LOGGER.debug("Save in settings clicked");
-        saveSettings();
-        closeDialog();
+        if (!LocalBroker.getInstance().isBrokerRunning()) {
+            LocalBroker.getInstance().startBroker();
+        } else {
+            LocalBroker.getInstance().stopBroker();
+        }
     }
 
     private void setupGUI() {
         localBrokerSettingsPane.setMinHeight(250);
         localBrokerSettingsPane.setMaxHeight(500);
-    }
 
-    private void saveSettings() {
-        LOGGER.debug("Saving settings");
+        if (!LocalBroker.getInstance().isBrokerRunning()) {
+            startStopButton.setText("Start");
+        }
 
     }
 
@@ -117,5 +124,23 @@ public class LocalBrokerSettingsViewController {
         if (KeyCode.ESCAPE == event.getCode()) {
             closeDialog();
         }
+    }
+
+    @FXML
+    public void onCancelClicked() {
+        LOGGER.debug("Cancel in settings clicked");
+        closeDialog();
+    }
+
+    @FXML
+    public void onSaveClicked() {
+        LOGGER.debug("Save in settings clicked");
+        saveSettings();
+        closeDialog();
+    }
+
+    private void saveSettings() {
+        LOGGER.debug("Saving settings");
+
     }
 }

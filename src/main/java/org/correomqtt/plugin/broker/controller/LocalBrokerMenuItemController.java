@@ -20,6 +20,11 @@ public class LocalBrokerMenuItemController {
     public LocalBrokerMenuItemController() {
     }
 
+    @FXML
+    public void initialize() {
+        LOGGER.debug("INIT");
+    }
+
     public void addItems(Menu menu, int i) {
         menu.getItems().add(i, localBrokerMenuItem);
     }
